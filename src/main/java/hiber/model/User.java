@@ -22,7 +22,7 @@ public class User {
 
    @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "cars_id")
-   private Car empCar;
+   private Car car;
 
    public User() {}
    
@@ -30,6 +30,12 @@ public class User {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+   }
+   public User(String firstName, String lastName, String email, Car car) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.email = email;
+      this.car = car;
    }
 
    public Long getId() {
@@ -64,12 +70,12 @@ public class User {
       this.email = email;
    }
 
-   public Car getEmpCar() {
-      return empCar;
+   public Car getCar() {
+      return car;
    }
 
-   public void setEmpCar(Car empCar) {
-      this.empCar = empCar;
+   public void setCar(Car empCar) {
+      this.car = empCar;
    }
 
    @Override
@@ -77,12 +83,12 @@ public class User {
       if (this == o) return true;
       if (!(o instanceof User)) return false;
       User user = (User) o;
-      return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(empCar, user.empCar);
+      return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(car, user.car);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, firstName, lastName, email, empCar);
+      return Objects.hash(id, firstName, lastName, email, car);
    }
 
    @Override
@@ -92,7 +98,7 @@ public class User {
               ", firstName='" + firstName + '\'' +
               ", lastName='" + lastName + '\'' +
               ", email='" + email + '\'' +
-              ", empCar=" + empCar +
+              ", empCar=" + car +
               '}';
    }
 }
